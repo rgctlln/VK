@@ -2,8 +2,6 @@ package inmemory
 
 import "VK/internal/subpub"
 
-const maxMessages = 1024
-
 type Subscriber struct {
 	ID           int64
 	Subject      string
@@ -18,7 +16,7 @@ func NewSubscriber(id int64, subject string, cb subpub.MessageHandler, pub *SubP
 		ID:           id,
 		Subject:      subject,
 		Handler:      cb,
-		MessageQueue: make(chan interface{}, maxMessages),
+		MessageQueue: make(chan interface{}),
 		closed:       make(chan struct{}),
 		pub:          pub,
 	}
